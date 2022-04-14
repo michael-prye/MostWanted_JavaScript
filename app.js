@@ -303,6 +303,7 @@ function getDOB(people){
     })
     return searchResults;
 }
+<<<<<<< HEAD
 function getHeight(people){
     let searchPrompt = promptFor(
         'Enter the Height:', chars
@@ -346,4 +347,12 @@ function getOccupation(people){
         }
     })
     return searchResults;
+=======
+function getResults(searchResults){
+    let display = `Name: ${searchResults.firstName} ${searchResults.lastName}\n`;
+    for(let i = 1;i < searchResults.length;i++){
+        display += `Name: ${searchResults.firstName} ${searchResults.lastName}\n`;
+
+    }
+>>>>>>> 0e119ab5aed67ef741cdd33457c2db2783368dea
 }
