@@ -67,7 +67,7 @@ function mainMenu(person, people) {
             //! TODO #1: Utilize the displayPerson function //////////////////////////////////////////
             // HINT: Look for a person-object stringifier utility function to help
             let personInfo = displayPerson(person[0]);
-            alert(personInfo);
+            alert(personInfo)
             break;
         case "family":
             //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
@@ -192,3 +192,13 @@ function chars(input) {
 
 //////////////////////////////////////////* End Of Starter Code *//////////////////////////////////////////
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
+
+function findPersonFamily(){
+    let foundSpouse = people.filter(function(person){
+        if (person.firstName === firstName && person.lastName === lastName) {
+            return true;
+        }
+    });
+    return foundSpouse
+
+}
