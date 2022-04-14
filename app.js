@@ -209,6 +209,22 @@ function findPersonFamily(person, people){
         for(let i = 0; i < foundParents.length; i++){
             familyInfo += `Parent: ${foundParents[i].firstName}  ${foundParents[i].lastName}\n`;
         }
+    let foundSiblings = people.filter(function(people){
+        for(let i = 0; i < person.parents.length; i++){
+            for(let j = 0; j < person.parents.length; j++){
+                if(person.parents[j] == people.parents[i]){
+                    return true
+                }
+
+
+            }
+        }
+    })
+    for(let i = 0; i < foundSiblings.length; i++){
+        familyInfo += `sibling: ${foundSiblings[i].firstName}  ${foundSiblings[i].lastName}\n`;
+    }
+
+   
     return familyInfo
 }
  
