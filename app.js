@@ -299,3 +299,10 @@ function getDOB(people){
     })
     return searchResults;
 }
+function getResults(searchResults){
+    let display = `Name: ${searchResults.firstName} ${searchResults.lastName}\n`;
+    for(let i = 1;i < searchResults.length;i++){
+        display += `Name: ${searchResults.firstName} ${searchResults.lastName}\n`;
+
+    }
+}
