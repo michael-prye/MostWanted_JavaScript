@@ -200,5 +200,15 @@ function findPersonFamily(person, people){
         }
     })
     let familyInfo = `Spouse: ${foundSpouse[0].firstName}  ${foundSpouse[0].lastName}\n`;
+    let foundParents = people.filter(function(people){
+        for(let i = 0; i < person.parents.length; i++){
+            if(person.parents[i] == people.id){
+                return true;
+        }
+    }})
+        for(let i = 0; i < foundParents.length; i++){
+            familyInfo += `Parent: ${foundParents[i].firstName}  ${foundParents[i].lastName}\n`;
+        }
     return familyInfo
 }
+ 
