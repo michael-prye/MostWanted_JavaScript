@@ -248,28 +248,36 @@ function searchByTraits(people){
     let searchResults = people;
     while(searchResults.length == 0 || searchResults.length > 1){
         let searchTrait = promptFor(
-            'What trait do you want to search by: gender, dob, height, weight, eyecolor, occupation', chars);
+            'What trait do you want to search by: gender, dob, height, weight, eyeColor, occupation or return to main menu', chars);
         switch(searchTrait){
+            case 'main menu':
+                return app(people);
             case 'gender':
                 searchResults = getGender(searchResults)
+                alert(getResults(searchResults))
                 break;
             case 'dob':
                 searchResults = getDOB(searchResults)
+                alert(getResults(searchResults))
                 break;
             case 'height':
                 searchResults = getHeight(searchResults)
+                alert(getResults(searchResults))
                 break;
             case 'weight':
                 searchResults = getWeight(searchResults)
+                alert(getResults(searchResults))
                 break;
             case 'eyeColor':
                 searchResults = getEyeColor(searchResults)
+                alert(getResults(searchResults))
                 break;
             case 'occupation':
                 searchResults = getOccupation(searchResults)
+                alert(getResults(searchResults))
                 break;
             default:
-                return mainMenu(person, people);
+                return app(people);
                 
         }
 
@@ -348,9 +356,9 @@ function getOccupation(people){
     return searchResults;
 }
 function getResults(searchResults){
-    let display = `Name: ${searchResults.firstName} ${searchResults.lastName}\n`;
+    let display = `Name: ${searchResults[0].firstName} ${searchResults[0].lastName}\n`;
     for(let i = 1;i < searchResults.length;i++){
-        display += `Name: ${searchResults.firstName} ${searchResults.lastName}\n`;
+        display += `Name: ${searchResults[i].firstName} ${searchResults[i].lastName}\n`;
 
     }
     return display;
