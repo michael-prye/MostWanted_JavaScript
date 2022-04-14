@@ -215,16 +215,27 @@ function findPersonFamily(person, people){
                 if(person.parents[j] == people.parents[i]){
                     return true
                 }
-
-
             }
         }
     })
     for(let i = 0; i < foundSiblings.length; i++){
         familyInfo += `sibling: ${foundSiblings[i].firstName}  ${foundSiblings[i].lastName}\n`;
     }
-
-   
     return familyInfo
 }
- 
+function findPersonDescendants(person, people){
+    let foundDescendants = people.filter(function(people){
+        for(let i = 0; i < people.parents.length; i++){
+            if(person.id == people.parents[i])
+            return true
+        }
+    })
+    if(foundDescendants.length === 0)
+        return 'They have no children...'
+    else;
+        let personDescendants = `Children: ${foundDescendants[0].firstName}  ${foundDescendants[0].lastName}\n`;
+        for(let i = 1; i <foundDescendants.length; i++){
+            personDescendants += `Children: ${foundDescendants[i].firstName}  ${foundDescendants[i].lastName}\n`;     
+        }
+    return personDescendants
+}
