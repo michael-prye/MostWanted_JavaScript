@@ -257,12 +257,16 @@ function searchByTraits(people){
                 searchResults = getDOB(searchResults)
                 break;
             case 'height':
+                searchResults = getHeight(searchResults)
                 break;
             case 'weight':
+                searchResults = getWeight(searchResults)
                 break;
             case 'eyeColor':
+                searchResults = getEyeColor(searchResults)
                 break;
             case 'occupation':
+                searchResults = getOccupation(searchResults)
                 break;
             default:
                 return mainMenu(person, people);
@@ -294,6 +298,50 @@ function getDOB(people){
     )
     let searchResults = people.filter(function(people){
         if(people.dob == searchPrompt){
+            return true;
+        }
+    })
+    return searchResults;
+}
+function getHeight(people){
+    let searchPrompt = promptFor(
+        'Enter the Height:', chars
+    )
+    let searchResults = people.filter(function(people){
+        if(people.height == searchPrompt){
+            return true;
+        }
+    })
+    return searchResults;
+}
+function getWeight(people){
+    let searchPrompt = promptFor(
+        'Enter the Weight:', chars
+    )
+    let searchResults = people.filter(function(people){
+        if(people.weight == searchPrompt){
+            return true;
+        }
+    })
+    return searchResults;
+}
+function getEyeColor(people){
+    let searchPrompt = promptFor(
+        'Enter the Eye Color:', chars
+    )
+    let searchResults = people.filter(function(people){
+        if(people.eyeColor == searchPrompt){
+            return true;
+        }
+    })
+    return searchResults;
+}
+function getOccupation(people){
+    let searchPrompt = promptFor(
+        'Enter the occupation:', chars
+    )
+    let searchResults = people.filter(function(people){
+        if(people.occupation == searchPrompt){
             return true;
         }
     })
