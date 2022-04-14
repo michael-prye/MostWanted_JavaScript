@@ -218,9 +218,13 @@ function findPersonFamily(person, people){
             }
         }
     })
-    for(let i = 0; i < foundSiblings.length; i++){
-        familyInfo += `sibling: ${foundSiblings[i].firstName}  ${foundSiblings[i].lastName}\n`;
+    if(foundSiblings.length == 0){
+        return 'No siblings'
     }
+    else;
+        for(let i = 0; i < foundSiblings.length; i++){
+            familyInfo += `sibling: ${foundSiblings[i].firstName}  ${foundSiblings[i].lastName}\n`;
+        }
     return familyInfo
 }
 function findPersonDescendants(person, people){
@@ -238,4 +242,60 @@ function findPersonDescendants(person, people){
             personDescendants += `Children: ${foundDescendants[i].firstName}  ${foundDescendants[i].lastName}\n`;     
         }
     return personDescendants
+}
+
+function searchByTraits(people){
+    let searchResults = people;
+    while(searchResults.length == 0 || searchResults.length > 1){
+        let searchTrait = promptFor(
+            'What trait do you want to search by: gender, dob, height, weight, eyecolor, occupation', chars);
+        switch(searchTrait){
+            case 'gender':
+                searchResults = getGender(searchResults)
+                break;
+            case 'dob':
+                searchResults = getDOB(searchResults)
+                break;
+            case 'height':
+                break;
+            case 'weight':
+                break;
+            case 'eyeColor':
+                break;
+            case 'occupation':
+                break;
+            default:
+                return mainMenu(person, people);
+                
+        }
+
+
+
+    }
+    return searchResults;
+    
+}
+
+function getGender(people){
+    let searchPrompt = promptFor(
+        'Male or Female:', chars
+    )
+    let searchResults = people.filter(function(people){
+        if(people.gender == searchPrompt){
+            return true;
+        }
+    })
+    return searchResults;
+
+}
+function getDOB(people){
+    let searchPrompt = promptFor(
+        'Enter the date of birth:', chars
+    )
+    let searchResults = people.filter(function(people){
+        if(people.dob == searchPrompt){
+            return true;
+        }
+    })
+    return searchResults;
 }
