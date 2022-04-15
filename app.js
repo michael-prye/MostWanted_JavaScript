@@ -103,7 +103,9 @@ function mainMenu(person, people) {
  */
 function searchByName(people) {
     let firstName = promptFor("What is the person's first name?", chars);
+    firstName = capitalizeName(firstName);
     let lastName = promptFor("What is the person's last name?", chars);
+    lastName = capitalizeName(lastName);
 
     // The foundPerson value will be of type Array. Recall that .filter() ALWAYS returns an array.
     let foundPerson = people.filter(function (person) {
@@ -149,7 +151,7 @@ function displayPerson(person) {
     personInfo += `Parents: ${person.parents}\n`;
     personInfo += `Current Spouse: ${person.currentSpouse}\n`;
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
-    alert(personInfo);
+    return personInfo;
 }
 // End of displayPerson()
 
@@ -274,34 +276,59 @@ function searchByTraits(people){
     let searchResults = people;
     while(searchResults.length == 0 || searchResults.length > 1){
         let searchTrait = promptFor(
-            'What trait do you want to search by: gender, dob, height, weight, eyeColor, occupation or return to main menu', chars);
+            'What trait do you want to search by: gender, dob, height, weight, eye color, occupation or return to main menu', chars);
         switch(searchTrait){
             case 'main menu':
                 return app(people);
             case 'gender':
                 searchResults = getGender(searchResults)
-                alert(getResults(searchResults))
-                break;
+                if(searchResults.length != 0){
+                    alert(getResults(searchResults))
+                    break;
+                }
+                else;
+                return searchByTraits(people);
+
             case 'dob':
                 searchResults = getDOB(searchResults)
-                alert(getResults(searchResults))
-                break;
+                if(searchResults.length != 0){
+                    alert(getResults(searchResults))
+                    break;
+                }
+                else;
+                return searchByTraits(people);
             case 'height':
                 searchResults = getHeight(searchResults)
-                alert(getResults(searchResults))
-                break;
+                if(searchResults.length != 0){
+                    alert(getResults(searchResults))
+                    break;
+                }
+                else;
+                return searchByTraits(people);
             case 'weight':
                 searchResults = getWeight(searchResults)
-                alert(getResults(searchResults))
-                break;
-            case 'eyeColor':
+                if(searchResults.length != 0){
+                    alert(getResults(searchResults))
+                    break;
+                }
+                else;
+                return searchByTraits(people);
+            case 'eye color':
                 searchResults = getEyeColor(searchResults)
-                alert(getResults(searchResults))
-                break;
+                if(searchResults.length != 0){
+                    alert(getResults(searchResults))
+                    break;
+                }
+                else;
+                return searchByTraits(people);
             case 'occupation':
                 searchResults = getOccupation(searchResults)
-                alert(getResults(searchResults))
-                break;
+                if(searchResults.length != 0){
+                    alert(getResults(searchResults))
+                    break;
+                }
+                else;
+                return searchByTraits(people);
             default:
                 return app(people);
                 
@@ -316,8 +343,8 @@ function searchByTraits(people){
 
 function getGender(people){
     let searchPrompt = promptFor(
-        'Male or Female:', chars
-    )
+        'Male or Female:', chars)
+    
     let searchResults = people.filter(function(people){
         if(people.gender == searchPrompt){
             return true;
@@ -388,4 +415,7 @@ function getResults(searchResults){
 
     }
     return display;
+}
+function capitalizeName(input){
+    return input.charAt(0).toUpperCase() + input.slice(1);
 }
