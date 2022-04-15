@@ -262,11 +262,10 @@ function findPersonDescendants(person, people){
 
     foundDescendants = people.filter(function(people){
         for(let i = 0; i < foundDescendants.length; i++){
-            for(let j = 0; i < people.parents.length; i++){
+            for(let j = 0; i < people.parents.length; j++){
             if(foundDescendants[i].id == people.parents[j]){
                 return true 
-            }
-                       
+            } 
             }
         }
         })
