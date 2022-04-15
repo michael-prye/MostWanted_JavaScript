@@ -251,7 +251,7 @@ function findPersonFamily(person, people){
     return familyInfo
 }
 function findPersonDescendants(person, people){
-    let foundDescendants = people.filter(function(people){
+    let foundChildren = people.filter(function(people){
         for(let i = 0; i < people.parents.length; i++){
             if(person.id == people.parents[i]){
                 return true
@@ -260,23 +260,31 @@ function findPersonDescendants(person, people){
         }    
     })
 
-    foundDescendants = people.filter(function(people){
-        for(let i = 0; i < foundDescendants.length; i++){
-            for(let j = 0; i < people.parents.length; i++){
-            if(foundDescendants[i].id == people.parents[j]){
-                return true 
+    let foundGrandChildren = people.filter(function(people){
+        for(let i = 0; i < foundChildren.length; i++){
+            for(let j = 0; j < people.parents.length; j++){
+                if(foundChildren[i].id == people.parents[j]){
+                    return true 
             }
                        
             }
         }
         })
-    if(foundDescendants.length === 0)
-        return 'They have no children...'
+    if(foundChildren.length === 0){
+        let personDescendants = "They have no children...";
+    }
     else;
-        let personDescendants = `Children: ${foundDescendants[0].firstName}  ${foundDescendants[0].lastName}\n`;
-        for(let i = 1; i <foundDescendants.length; i++){
-            personDescendants += `Children: ${foundDescendants[i].firstName}  ${foundDescendants[i].lastName}\n`;     
+        let personDescendants = `Children: ${foundChildren[0].firstName}  ${foundChildren[0].lastName}\n`;
+        for(let i = 1; i <foundChildren.length; i++){
+            personDescendants += `Children: ${foundChildren[i].firstName}  ${foundChildren[i].lastName}\n`;     
         }
+    if(foundGrandChildren.length === 0){
+            personDescendants += "They have no Grandchildren";
+        }
+    else{
+        for(let i = 0; i <foundGrandChildren.length; i++){
+            personDescendants += `Grandchildren: ${foundGrandChildren[i].firstName}  ${foundGrandChildren[i].lastName}\n`;     
+        }}
         // function recursivelyFindDescendants(person, people, array =[]){
 
 
