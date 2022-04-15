@@ -415,7 +415,7 @@ function getWeight(people){
 }
 function getEyeColor(people){
     let searchPrompt = promptFor(
-        'Enter the Eye Color:', chars
+        'Enter the Eye Color:\navailable eye color: blue, brown, black, green, hazel', chars
     )
     let searchResults = people.filter(function(people){
         if(people.eyeColor === searchPrompt){
@@ -426,7 +426,7 @@ function getEyeColor(people){
 }
 function getOccupation(people){
     let searchPrompt = promptFor(
-        'Enter the occupation:', chars
+        'Enter the occupation:\navailable occupations: programmer, assistant, landscaper, nurse, student, architect, doctor, politician', chars
     )
     let searchResults = people.filter(function(people){
         if(people.occupation === searchPrompt){
