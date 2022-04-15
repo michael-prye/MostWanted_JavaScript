@@ -339,6 +339,7 @@ function searchByTraits(people){
     }
     return searchResults;
     
+    
 }
 
 function getGender(people){
