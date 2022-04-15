@@ -194,37 +194,58 @@ function chars(input) {
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
 function findPersonFamily(person, people){
+    let familyInfo = ''
     let foundSpouse = people.filter(function(people){
         if(person.currentSpouse == people.id){
             return true;
         }
     })
-    let familyInfo = `Spouse: ${foundSpouse[0].firstName}  ${foundSpouse[0].lastName}\n`;
+    if(foundSpouse.length == 0){
+    familyInfo += "No Spouse \n";
+    }
+    else{
+    familyInfo += `Spouse: ${foundSpouse[0].firstName}  ${foundSpouse[0].lastName}\n`;
+    }
     let foundParents = people.filter(function(people){
         for(let i = 0; i < person.parents.length; i++){
             if(person.parents[i] == people.id){
                 return true;
+
         }
     }})
-        for(let i = 0; i < foundParents.length; i++){
-            familyInfo += `Parent: ${foundParents[i].firstName}  ${foundParents[i].lastName}\n`;
+        if(foundParents.length ==0){
+        familyInfo += "No Parents \n";
         }
+    
+
+        else{
+            for(let i = 0; i < foundParents.length; i++){
+            familyInfo += `Parent: ${foundParents[i].firstName}  ${foundParents[i].lastName}\n`;
+        }}
+
+
     let foundSiblings = people.filter(function(people){
         for(let i = 0; i < person.parents.length; i++){
             for(let j = 0; j < person.parents.length; j++){
                 if(person.parents[j] == people.parents[i]){
-                    return true
+
+                    if(person.id == people.id){
+                        return false;
+                    }
+                    else{
+                        return true;
+                    } 
                 }
             }
         }
     })
     if(foundSiblings.length == 0){
-        return 'No siblings'
+    familyInfo += "No Siblings \n";
     }
-    else;
+    else{
         for(let i = 0; i < foundSiblings.length; i++){
-            familyInfo += `sibling: ${foundSiblings[i].firstName}  ${foundSiblings[i].lastName}\n`;
-        }
+            familyInfo += `Sibling: ${foundSiblings[i].firstName}  ${foundSiblings[i].lastName}\n`;
+        }}
     return familyInfo
 }
 function findPersonDescendants(person, people){
@@ -241,6 +262,11 @@ function findPersonDescendants(person, people){
         for(let i = 1; i <foundDescendants.length; i++){
             personDescendants += `Children: ${foundDescendants[i].firstName}  ${foundDescendants[i].lastName}\n`;     
         }
+        function recursivelyFindDescendants(person, people, array =[]){
+            let subArray = people.
+        }
+    
+
     return personDescendants
 }
 
