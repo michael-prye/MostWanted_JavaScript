@@ -251,89 +251,53 @@ function findPersonFamily(person, people){
     return familyInfo
 }
 function findPersonDescendants(person, people){
+    let foundGrandChildrencopy = [];
     let descendantsCopy = people
     let foundChildren = people.filter(function(people){
         for(let i = 0; i < people.parents.length; i++){
-<<<<<<< HEAD
             if(person.id == people.parents[i]){
                 let foundChildrenCopy = people
                 let foundGrandChildren = descendantsCopy.filter(function(people){
                     for(let j = 0; j < people.parents.length; j++){
                         if(foundChildrenCopy.id == people.parents[j]){
-                            return true 
-                
-=======
-            if(person.id === people.parents[i]){
-                return true
->>>>>>> 5f54f958d11b2038f9c459eeafd2784772ac6375
-
-                    }
+                            foundGrandChildrencopy.push(people);
+                            return true;
+                        }
                 
         }  
          
     })
+    return true;
     }}
-    return true 
+
     })
-
-<<<<<<< HEAD
-    // let foundChildren = people.filter(function(people){
-    //     for(let i = 0; i < people.parents.length; i++){
-    //         if(person.id == people.parents[i]){
-    //             return true
-
-    //         }
-    //     }    
-    // })
-
-    // let foundGrandChildren = people.filter(function(people){
-    //     for(let i = 0; i < foundChildren.length; i++){
-    //         for(let j = 0; j < people.parents.length; j++){
-    //             if(foundChildren[i].id == people.parents[j]){
-                    
-    //                 return true 
-    //         }
-=======
-    let foundGrandChildren = people.filter(function(people){
-        for(let i = 0; i < foundChildren.length; i++){
-            for(let j = 0; j < people.parents.length; j++){
-                if(foundChildren[i].id === people.parents[j]){
-                    return true 
-            }
->>>>>>> 5f54f958d11b2038f9c459eeafd2784772ac6375
-                       
-    //         }
-    //     }
-    //     })
+    let personDescendants = '';
     if(foundChildren.length === 0){
-        let personDescendants = "They have no children...";
+        personDescendants += "They have no children...\n";
     }
-    else;
-        let personDescendants = `Children: ${foundChildren[0].firstName}  ${foundChildren[0].lastName}\n`;
+    else{
+        personDescendants += `Children: ${foundChildren[0].firstName}  ${foundChildren[0].lastName}\n`;
         for(let i = 1; i <foundChildren.length; i++){
             personDescendants += `Children: ${foundChildren[i].firstName}  ${foundChildren[i].lastName}\n`;     
-        }
-    if(foundGrandChildren.length === 0){
+            }}
+    if(foundGrandChildrencopy.length === 0){
             personDescendants += "They have no Grandchildren";
         }
     else{
-        for(let i = 0; i <foundGrandChildren.length; i++){
-            personDescendants += `Grandchildren: ${foundGrandChildren[i].firstName}  ${foundGrandChildren[i].lastName}\n`;     
+        for(let i = 0; i <foundGrandChildrencopy.length; i++){
+            personDescendants += `Grandchildren: ${foundGrandChildrencopy[i].firstName}  ${foundGrandChildrencopy[i].lastName}\n`;     
         }}
-        // function recursivelyFindDescendants(person, people, array =[]){
 
-
-
-
-
-
-        // }
-            
-        
-    
-
-    return personDescendants
+    return personDescendants;
 }
+
+// function recursivelyFindDescendants(person, people, array =[]){
+//     let array = people;
+//     for(let i = 0; i < people.length; i++){
+
+//     }
+// }
+
 function searchByTraits(people){
     let searchResults = people;
     while(searchResults.length === 0 || searchResults.length > 1){
