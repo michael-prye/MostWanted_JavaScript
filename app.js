@@ -198,11 +198,11 @@ function chars(input) {
 function findPersonFamily(person, people){
     let familyInfo = ''
     let foundSpouse = people.filter(function(people){
-        if(person.currentSpouse == people.id){
+        if(person.currentSpouse === people.id){
             return true;
         }
     })
-    if(foundSpouse.length == 0){
+    if(foundSpouse.length === 0){
     familyInfo += "No Spouse \n";
     }
     else{
@@ -210,12 +210,12 @@ function findPersonFamily(person, people){
     }
     let foundParents = people.filter(function(people){
         for(let i = 0; i < person.parents.length; i++){
-            if(person.parents[i] == people.id){
+            if(person.parents[i] === people.id){
                 return true;
 
         }
     }})
-        if(foundParents.length ==0){
+        if(foundParents.length === 0){
         familyInfo += "No Parents \n";
         }
     
@@ -229,9 +229,9 @@ function findPersonFamily(person, people){
     let foundSiblings = people.filter(function(people){
         for(let i = 0; i < person.parents.length; i++){
             for(let j = 0; j < person.parents.length; j++){
-                if(person.parents[j] == people.parents[i]){
+                if(person.parents[j] === people.parents[i]){
 
-                    if(person.id == people.id){
+                    if(person.id === people.id){
                         return false;
                     }
                     else{
@@ -241,7 +241,7 @@ function findPersonFamily(person, people){
             }
         }
     })
-    if(foundSiblings.length == 0){
+    if(foundSiblings.length === 0){
     familyInfo += "No Siblings \n";
     }
     else{
@@ -254,6 +254,7 @@ function findPersonDescendants(person, people){
     let descendantsCopy = people
     let foundChildren = people.filter(function(people){
         for(let i = 0; i < people.parents.length; i++){
+<<<<<<< HEAD
             if(person.id == people.parents[i]){
                 let foundChildrenCopy = people
                 let foundGrandChildren = descendantsCopy.filter(function(people){
@@ -261,6 +262,10 @@ function findPersonDescendants(person, people){
                         if(foundChildrenCopy.id == people.parents[j]){
                             return true 
                 
+=======
+            if(person.id === people.parents[i]){
+                return true
+>>>>>>> 5f54f958d11b2038f9c459eeafd2784772ac6375
 
                     }
                 
@@ -271,6 +276,7 @@ function findPersonDescendants(person, people){
     return true 
     })
 
+<<<<<<< HEAD
     // let foundChildren = people.filter(function(people){
     //     for(let i = 0; i < people.parents.length; i++){
     //         if(person.id == people.parents[i]){
@@ -287,6 +293,14 @@ function findPersonDescendants(person, people){
                     
     //                 return true 
     //         }
+=======
+    let foundGrandChildren = people.filter(function(people){
+        for(let i = 0; i < foundChildren.length; i++){
+            for(let j = 0; j < people.parents.length; j++){
+                if(foundChildren[i].id === people.parents[j]){
+                    return true 
+            }
+>>>>>>> 5f54f958d11b2038f9c459eeafd2784772ac6375
                        
     //         }
     //     }
@@ -320,10 +334,9 @@ function findPersonDescendants(person, people){
 
     return personDescendants
 }
-
 function searchByTraits(people){
     let searchResults = people;
-    while(searchResults.length == 0 || searchResults.length > 1){
+    while(searchResults.length === 0 || searchResults.length > 1){
         let searchTrait = promptFor(
             'What trait do you want to search by: gender, dob, height, weight, eye color, occupation or return to main menu', chars);
         switch(searchTrait){
@@ -390,13 +403,12 @@ function searchByTraits(people){
     
     
 }
-
 function getGender(people){
     let searchPrompt = promptFor(
         'Male or Female:', chars)
     
     let searchResults = people.filter(function(people){
-        if(people.gender == searchPrompt){
+        if(people.gender === searchPrompt){
             return true;
         }
     })
@@ -408,7 +420,7 @@ function getDOB(people){
         'Enter the date of birth:', chars
     )
     let searchResults = people.filter(function(people){
-        if(people.dob == searchPrompt){
+        if(people.dob === searchPrompt){
             return true;
         }
     })
@@ -419,7 +431,7 @@ function getHeight(people){
         'Enter the Height:', chars
     )
     let searchResults = people.filter(function(people){
-        if(people.height == searchPrompt){
+        if(people.height === searchPrompt){
             return true;
         }
     })
@@ -430,7 +442,7 @@ function getWeight(people){
         'Enter the Weight:', chars
     )
     let searchResults = people.filter(function(people){
-        if(people.weight == searchPrompt){
+        if(people.weight === searchPrompt){
             return true;
         }
     })
@@ -438,10 +450,10 @@ function getWeight(people){
 }
 function getEyeColor(people){
     let searchPrompt = promptFor(
-        'Enter the Eye Color:', chars
+        'Enter the Eye Color:\navailable eye color: blue, brown, black, green, hazel', chars
     )
     let searchResults = people.filter(function(people){
-        if(people.eyeColor == searchPrompt){
+        if(people.eyeColor === searchPrompt){
             return true;
         }
     })
@@ -449,10 +461,10 @@ function getEyeColor(people){
 }
 function getOccupation(people){
     let searchPrompt = promptFor(
-        'Enter the occupation:', chars
+        'Enter the occupation:\navailable occupations: programmer, assistant, landscaper, nurse, student, architect, doctor, politician', chars
     )
     let searchResults = people.filter(function(people){
-        if(people.occupation == searchPrompt){
+        if(people.occupation === searchPrompt){
             return true;
         }
     })
