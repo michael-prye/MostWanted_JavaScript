@@ -251,25 +251,46 @@ function findPersonFamily(person, people){
     return familyInfo
 }
 function findPersonDescendants(person, people){
+    let descendantsCopy = people
     let foundChildren = people.filter(function(people){
         for(let i = 0; i < people.parents.length; i++){
             if(person.id == people.parents[i]){
-                return true
+                let foundChildrenCopy = people
+                let foundGrandChildren = descendantsCopy.filter(function(people){
+                    for(let j = 0; j < people.parents.length; j++){
+                        if(foundChildrenCopy.id == people.parents[j]){
+                            return true 
+                
 
-            }
-        }    
+                    }
+                
+        }  
+         
+    })
+    }}
+    return true 
     })
 
-    let foundGrandChildren = people.filter(function(people){
-        for(let i = 0; i < foundChildren.length; i++){
-            for(let j = 0; j < people.parents.length; j++){
-                if(foundChildren[i].id == people.parents[j]){
-                    return true 
-            }
+    // let foundChildren = people.filter(function(people){
+    //     for(let i = 0; i < people.parents.length; i++){
+    //         if(person.id == people.parents[i]){
+    //             return true
+
+    //         }
+    //     }    
+    // })
+
+    // let foundGrandChildren = people.filter(function(people){
+    //     for(let i = 0; i < foundChildren.length; i++){
+    //         for(let j = 0; j < people.parents.length; j++){
+    //             if(foundChildren[i].id == people.parents[j]){
+                    
+    //                 return true 
+    //         }
                        
-            }
-        }
-        })
+    //         }
+    //     }
+    //     })
     if(foundChildren.length === 0){
         let personDescendants = "They have no children...";
     }
